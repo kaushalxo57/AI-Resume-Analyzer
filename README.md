@@ -92,3 +92,4 @@ The application is pre-configured for instant deployment to **Streamlit Communit
 2. Visit [Streamlit Share](https://share.streamlit.io/) and log in with GitHub.
 3. Link the repository, select `app.py` as the entrypoint, and deploy!
 4. *(Optional)* Add your `GEMINI_API_KEY` under Streamlit Advanced Settings -> Secrets if you want it enabled by default for all users.
+# AI-Resume-Analyzer
