@@ -42,34 +42,13 @@ st.markdown(
     <div class="hero-container">
         <div class="japanese-badge">AI レジュメ 分析</div>
         <h1 class="hero-title">AI RESUME<br>ANALYZER</h1>
-        <p class="hero-subtitle">Beat ATS Systems. Improve Your Resume. Land More Interviews.</p>
     </div>
     """,
     unsafe_allow_html=True
 )
 
-# SECTION 1: Advanced Settings (Main Page Expander - Compact)
-with st.expander("⚙️ Advanced Settings", expanded=False):
-    col_exp1, col_exp2 = st.columns([3, 1])
-    with col_exp1:
-        api_key_input = st.text_input(
-            "Google Gemini API Key",
-            type="password",
-            value=os.getenv("GEMINI_API_KEY", ""),
-            label_visibility="collapsed",
-            placeholder="Enter Gemini API Key to enable AI analysis..."
-        )
-    with col_exp2:
-        if api_key_input.strip():
-            st.markdown(
-                '<div class="status-badge strong" style="display:block; text-align:center; height:42px; line-height:42px; box-sizing:border-box;">Gemini Engine</div>',
-                unsafe_allow_html=True
-            )
-        else:
-            st.markdown(
-                '<div class="status-badge average" style="display:block; text-align:center; height:42px; line-height:42px; box-sizing:border-box;">Local Engine</div>',
-                unsafe_allow_html=True
-            )
+# Read API Key from session state or environment before rendering the widget
+api_key_value = st.session_state.get("gemini_api_key", os.getenv("GEMINI_API_KEY", ""))
 
 # Initialize session state for analysis results
 if "analysis_results" not in st.session_state:
@@ -109,12 +88,12 @@ if analyze_clicked:
                 analysis = {}
                 
                 # 2. Check if we should use Gemini or local heuristics
-                use_gemini = bool(api_key_input.strip())
+                use_gemini = bool(api_key_value.strip())
                 gemini_success = False
                 
                 if use_gemini:
                     # Attempt Gemini analysis
-                    gemini_result = analyze_with_gemini(api_key_input.strip(), resume_text, job_desc)
+                    gemini_result = analyze_with_gemini(api_key_value.strip(), resume_text, job_desc)
                     if "error" not in gemini_result:
                         analysis = gemini_result
                         gemini_success = True
@@ -255,26 +234,30 @@ if st.session_state.analysis_results:
         checklist_html = ""
         if "checklist" in health:
             checklist = health["checklist"]
-            checklist_html = textwrap.dedent(f"""
-            <hr style="border-color:#1F1F1F; margin: 1rem 0;"/>
-            <div style="font-size:0.85rem; line-height:1.6; color:#A1A1AA;">
-                <div>{"✅" if checklist.get("word_count") else "❌"} Length check</div>
-                <div>{"✅" if checklist.get("sections_found") else "❌"} Key sections present</div>
-                <div>{"✅" if checklist.get("skills_coverage") else "❌"} Skills representation</div>
-                <div>{"✅" if checklist.get("ats_formatting") else "❌"} Formatting index</div>
-            </div>
-            """)
+            c_wc = "✅" if checklist.get("word_count") else "❌"
+            c_sf = "✅" if checklist.get("sections_found") else "❌"
+            c_sc = "✅" if checklist.get("skills_coverage") else "❌"
+            c_af = "✅" if checklist.get("ats_formatting") else "❌"
+            checklist_html = (
+                f'<hr style="border-color:#1F1F1F; margin:1rem 0;"/>'
+                f'<div style="font-size:0.85rem; line-height:1.6; color:#A1A1AA;">'
+                f'<div>{c_wc} Length check</div>'
+                f'<div>{c_sf} Key sections present</div>'
+                f'<div>{c_sc} Skills representation</div>'
+                f'<div>{c_af} Formatting index</div>'
+                f'</div>'
+            )
             
-        health_card_html = textwrap.dedent(f"""
-        <div class="cyber-card">
-            <div class="cyber-card-title">RESUME HEALTH</div>
-            <div style="text-align:center; padding:0.5rem 0;">
-                <div style="font-size:3.5rem; font-family:'Space Grotesk'; font-weight:700; color:#FFFFFF; line-height:1;">{health_score}<span style="font-size:1.5rem; color:#71717A;">/100</span></div>
-                <div style="font-size:0.85rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color:#FF3B30; margin-top:0.25rem;">{health_label} STATUS</div>
-            </div>
-            {checklist_html}
-        </div>
-        """)
+        health_card_html = (
+            f'<div class="cyber-card">'
+            f'<div class="cyber-card-title">RESUME HEALTH</div>'
+            f'<div style="text-align:center; padding:0.5rem 0;">'
+            f'<div style="font-size:3.5rem; font-family:\'Space Grotesk\'; font-weight:700; color:#FFFFFF; line-height:1;">{health_score}<span style="font-size:1.5rem; color:#71717A;">/100</span></div>'
+            f'<div style="font-size:0.85rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color:#FF3B30; margin-top:0.25rem;">{health_label} STATUS</div>'
+            f'</div>'
+            f'{checklist_html}'
+            f'</div>'
+        )
         st.markdown(health_card_html, unsafe_allow_html=True)
         
     with col_suggest:
@@ -313,3 +296,29 @@ if st.session_state.analysis_results:
             )
         except Exception as pdf_err:
             st.error(f"Error compiling PDF Report: {pdf_err}")
+
+# SECTION 6: Advanced Settings (Main Page Expander - Always at the bottom)
+st.markdown("<br/>", unsafe_allow_html=True)
+with st.expander("⚙️ Advanced Settings", expanded=False):
+    col_exp1, col_exp2 = st.columns([3, 1])
+    with col_exp1:
+        api_key_input = st.text_input(
+            "Google Gemini API Key",
+            type="password",
+            value=os.getenv("GEMINI_API_KEY", ""),
+            label_visibility="collapsed",
+            placeholder="Enter Gemini API Key to enable AI analysis...",
+            key="gemini_api_key"
+        )
+    with col_exp2:
+        current_api_val = st.session_state.get("gemini_api_key", "").strip() or os.getenv("GEMINI_API_KEY", "")
+        if current_api_val:
+            st.markdown(
+                '<div class="status-badge strong" style="display:block; text-align:center; height:42px; line-height:42px; box-sizing:border-box;">Gemini Engine</div>',
+                unsafe_allow_html=True
+            )
+        else:
+            st.markdown(
+                '<div class="status-badge average" style="display:block; text-align:center; height:42px; line-height:42px; box-sizing:border-box;">Local Engine</div>',
+                unsafe_allow_html=True
+            )

@@ -62,3 +62,10 @@ venv.bak/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+.venv/
+__pycache__/
+*.pyc
+.env
+.DS_Store
+.streamlit/secrets.toml

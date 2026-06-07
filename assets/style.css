@@ -110,6 +110,7 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0 auto;
     line-height: 1.6;
     letter-spacing: 0.01em;
+    text-align: center !important;
 }
 
 /* Premium Card Designs (Clean Auto-Height Content Blocks) */
@@ -307,13 +308,13 @@ div[data-testid="stVerticalBlockBorderWrapper"] h3 {
 }
 
 .cyber-list-item::before {
-    content: "//";
+    content: "•";
     position: absolute;
     left: 0;
     color: var(--accent-red);
-    font-family: var(--font-mono);
     font-weight: 700;
-    font-size: 0.75rem;
+    font-size: 1.1rem;
+    line-height: 1.1;
 }
 
 /* Clean Custom Dividers */
