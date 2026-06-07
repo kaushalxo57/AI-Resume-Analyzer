@@ -1,0 +1,449 @@
+/* ==========================================================================
+   JAPANESE CYBER MINIMALISM STYLESHEET
+   AI Resume Analyzer UI/UX Enhancements
+   ========================================================================== */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&display=swap');
+
+/* CSS Variables for Clean Design System */
+:root {
+    --bg-color: #000000;
+    --card-color: #111111;
+    --border-color: #1F1F1F;
+    --text-color: #FFFFFF;
+    --text-secondary: #A1A1AA;
+    --accent-red: #FF3B30;
+    --accent-red-hover: #E03126;
+    --accent-red-active: #C2271D;
+    --accent-red-glow: rgba(255, 59, 48, 0.15);
+    --font-sans: 'Inter', sans-serif;
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* Global Application Background and Color */
+html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
+    background-color: var(--bg-color) !important;
+    color: var(--text-color) !important;
+    font-family: var(--font-sans) !important;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Hide Default Streamlit Elements */
+[data-testid="stHeader"] {
+    background-color: transparent !important;
+}
+footer {
+    display: none !important;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-color);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-red);
+}
+
+/* Typography Hierarchy */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading) !important;
+    letter-spacing: -0.02em !important;
+    color: var(--text-color) !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+}
+
+/* Custom Subtitles and Monospace Labels */
+.cyber-mono-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+/* Hero Title Section */
+.hero-container {
+    text-align: center;
+    padding: 4rem 1rem 3rem 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    background: linear-gradient(180deg, rgba(255, 59, 48, 0.03) 0%, transparent 100%);
+}
+
+.japanese-badge {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--accent-red);
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    display: inline-block;
+    border: 1px solid rgba(255, 59, 48, 0.2);
+    padding: 0.2rem 0.6rem;
+    background-color: rgba(255, 59, 48, 0.05);
+}
+
+.hero-title {
+    font-size: 3.5rem !important;
+    line-height: 0.9 !important;
+    margin-bottom: 1rem !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.06em !important;
+}
+
+.hero-subtitle {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    max-width: 550px;
+    margin: 0 auto;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+}
+
+/* Premium Card Designs (Clean Auto-Height Content Blocks) */
+.cyber-card {
+    background-color: var(--card-color);
+    border: 1px solid var(--border-color);
+    border-radius: 0; /* Sharp cyber corners */
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.cyber-card:hover {
+    border-color: rgba(255, 59, 48, 0.6);
+    box-shadow: 0 0 15px rgba(255, 59, 48, 0.05);
+}
+
+.cyber-card-title {
+    font-family: var(--font-heading) !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    font-size: 1rem !important;
+    letter-spacing: 0.08em !important;
+    color: var(--text-color) !important;
+    margin-bottom: 1.25rem !important;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.75rem;
+}
+
+/* Match Score Focus HUD */
+.score-hud {
+    background-color: var(--card-color);
+    border: 1px solid var(--border-color);
+    border-top: 3px solid var(--accent-red); /* Thick accent edge */
+    border-radius: 0;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 32px rgba(255, 59, 48, 0.02);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.score-hud:hover {
+    border-color: var(--accent-red);
+}
+
+.score-display-large {
+    font-family: var(--font-heading);
+    font-size: 6.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--accent-red);
+    letter-spacing: -0.05em;
+    margin: 0.5rem 0;
+    text-shadow: 0 0 20px rgba(255, 59, 48, 0.25);
+}
+
+.score-hud-classification {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.score-hud-meta {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    max-width: 500px;
+    line-height: 1.5;
+}
+
+/* Style Streamlit Containers to match Cyber aesthetic */
+div[data-testid="stVerticalBlockBorderWrapper"] {
+    background-color: var(--card-color) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 0 !important;
+    padding: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+    transition: all 0.3s ease !important;
+}
+
+div[data-testid="stVerticalBlockBorderWrapper"]:hover {
+    border-color: rgba(255, 59, 48, 0.6) !important;
+}
+
+div[data-testid="stVerticalBlockBorderWrapper"] h3 {
+    margin-top: 0 !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    padding-bottom: 0.75rem !important;
+    margin-bottom: 1.25rem !important;
+    font-size: 1rem !important;
+    letter-spacing: 0.08em !important;
+    font-family: var(--font-heading) !important;
+}
+
+/* Custom Status Badges */
+.status-badge {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-radius: 0;
+}
+.status-badge.strong {
+    background-color: rgba(34, 197, 94, 0.08);
+    color: #22C55E;
+    border: 1px solid rgba(34, 197, 94, 0.2);
+}
+.status-badge.average {
+    background-color: rgba(245, 158, 11, 0.08);
+    color: #F59E0B;
+    border: 1px solid rgba(245, 158, 11, 0.2);
+}
+.status-badge.poor {
+    background-color: rgba(255, 59, 48, 0.08);
+    color: var(--accent-red);
+    border: 1px solid rgba(255, 59, 48, 0.2);
+}
+
+/* Skills wrapper & standard gray chips */
+.skills-wrapper, .keywords-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: 0.5rem;
+}
+
+.skill-chip {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.25rem 0.6rem;
+    background-color: #000000;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 0;
+    letter-spacing: 0.02em;
+    transition: all 0.2s ease;
+}
+
+.skill-chip:hover {
+    color: var(--text-color);
+    border-color: var(--accent-red);
+    background-color: rgba(255, 59, 48, 0.05);
+}
+
+/* Missing keywords chips (red warning style) */
+.keyword-chip {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.6rem;
+    background-color: rgba(255, 59, 48, 0.04);
+    color: var(--accent-red);
+    border: 1px solid rgba(255, 59, 48, 0.25);
+    border-radius: 0;
+    letter-spacing: 0.02em;
+    transition: all 0.2s ease;
+}
+
+.keyword-chip:hover {
+    background-color: rgba(255, 59, 48, 0.08);
+    border-color: var(--accent-red);
+    color: #FFFFFF;
+    box-shadow: 0 0 8px rgba(255, 59, 48, 0.1);
+}
+
+/* Bullet list override items */
+.cyber-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.cyber-list-item {
+    position: relative;
+    padding-left: 1.25rem;
+    margin-bottom: 0.6rem;
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.cyber-list-item::before {
+    content: "//";
+    position: absolute;
+    left: 0;
+    color: var(--accent-red);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.75rem;
+}
+
+/* Clean Custom Dividers */
+.cyber-divider {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 1.5rem 0;
+}
+
+/* Streamlit Forms and Controls Custom Styling */
+.stTextArea textarea {
+    background-color: #050505 !important;
+    color: var(--text-color) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 0 !important;
+    font-family: var(--font-sans) !important;
+    font-size: 0.9rem !important;
+}
+
+.stTextArea textarea:focus {
+    border-color: var(--accent-red) !important;
+    box-shadow: 0 0 0 1px var(--accent-red) !important;
+}
+
+/* File Uploader styling */
+.stFileUploader section {
+    background-color: #050505 !important;
+    border: 1px dashed var(--border-color) !important;
+    border-radius: 0 !important;
+    padding: 2rem !important;
+    transition: border-color 0.2s ease;
+}
+
+.stFileUploader section:hover {
+    border-color: var(--accent-red) !important;
+}
+
+/* Streamlit Buttons Overrides */
+div.stButton > button {
+    background-color: var(--accent-red) !important;
+    color: var(--text-color) !important;
+    font-family: var(--font-heading) !important;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.08em !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0.6rem 2rem !important;
+    width: 100% !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 4px 12px rgba(255, 59, 48, 0.1);
+}
+
+div.stButton > button:hover {
+    background-color: var(--accent-red-hover) !important;
+    box-shadow: 0 4px 16px rgba(255, 59, 48, 0.2);
+    transform: translateY(-1px);
+}
+
+div.stButton > button:active {
+    background-color: var(--accent-red-active) !important;
+    transform: translateY(0);
+}
+
+/* Streamlit Expanders Styling */
+.streamlit-expanderHeader {
+    background-color: var(--card-color) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 0 !important;
+    color: var(--text-color) !important;
+    font-family: var(--font-heading) !important;
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.05em !important;
+    text-transform: uppercase;
+}
+
+.streamlit-expanderContent {
+    background-color: #050505 !important;
+    border: 1px solid var(--border-color) !important;
+    border-top: none !important;
+    border-radius: 0 !important;
+    padding: 1.5rem !important;
+}
+
+/* Native Progress Bar Overrides */
+div[data-testid="stProgress"] > div > div > div > div {
+    background-color: var(--accent-red) !important;
+}
+
+div[data-testid="stProgress"] {
+    margin-bottom: 1.5rem !important;
+}
+
+/* Sidebar Custom Styling - Minimalist Reset */
+[data-testid="stSidebar"] {
+    background-color: #030303 !important;
+    border-right: 1px solid var(--border-color) !important;
+}
+
+[data-testid="stSidebar"] .stMarkdown p {
+    color: var(--text-secondary) !important;
+    font-size: 0.85rem !important;
+}
+
+/* MOBILE RESPONSIVENESS AND LAYOUT */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.25rem !important;
+        line-height: 1.0 !important;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.85rem;
+    }
+    
+    .score-display-large {
+        font-size: 4.5rem;
+    }
+    
+    .score-hud {
+        padding: 1.25rem;
+    }
+    
+    .cyber-card {
+        padding: 1rem;
+    }
+    
+    div[data-testid="stVerticalBlockBorderWrapper"] {
+        padding: 1rem !important;
+    }
+}
