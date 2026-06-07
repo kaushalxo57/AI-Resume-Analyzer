@@ -1,180 +1,121 @@
-# AI Resume Analyzer
+# 📄 AI Resume Analyzer
 
 🔗 **Live Demo:** https://kaushal-ai-resume-analyzer.streamlit.app/
 
-AI Resume Analyzer is a web application built with Python and Streamlit that helps job seekers evaluate how well their resume aligns with a target job description.
+This is a resume analysis application that I built to improve my Python development skills and understand how Applicant Tracking Systems (ATS) evaluate resumes during the hiring process.
 
-The application performs ATS-style analysis by comparing resume content against job requirements, identifying missing keywords, extracting technical skills, predicting suitable career roles, and providing actionable suggestions to improve resume quality.
+The idea behind the project was simple: create a platform where users can upload their resume, compare it against a job description, identify missing keywords, and receive practical suggestions to improve their chances of getting shortlisted.
 
-This project was built to strengthen my skills in Python development, NLP, data processing, UI/UX design, and deploying production-ready applications.
+While building this project, I learned how to work with PDF processing, Natural Language Processing (NLP), machine learning concepts, dashboard development, API integration, Git, GitHub, and cloud deployment.
 
 ---
 
 ## Features
 
-### ATS Match Analysis
+### ATS Score Analysis
 
 * Compare resumes against job descriptions
-* Calculate ATS compatibility scores
+* Generate ATS compatibility scores
 * Classify resumes as Poor, Average, or Strong matches
 
 ### Resume Parsing
 
-* Upload PDF resumes
-* Support for multi-page documents
-* Automatic text extraction
+* Upload resumes in PDF format
+* Extract content from single and multi-page documents
+* Automatically process resume text
 
 ### Skill Detection
 
-Extracts technical skills such as:
-
-* Python
-* SQL
-* Pandas
-* NumPy
-* Machine Learning
-* Git & GitHub
-* Power BI
-* Tableau
-* HTML, CSS, JavaScript
+* Identify technical skills from resume content
+* Detect tools, technologies, and programming languages
+* Present skills in a clean and readable format
 
 ### Missing Keyword Analysis
 
 * Detect important keywords missing from the resume
-* Improve ATS compatibility
-* Highlight opportunities for optimization
+* Improve ATS optimization
+* Highlight areas that need improvement
 
 ### Role Prediction
 
-Suggest suitable career paths based on detected skills:
-
-* Data Analyst
-* Python Developer
-* Data Science Intern
-* Business Analyst
+* Suggest suitable career roles based on detected skills
+* Recommend alternative career paths
 
 ### Resume Health Check
 
-Evaluate:
-
-* Resume length
-* Skill coverage
-* ATS readiness
-* Overall resume quality
+* Evaluate overall resume quality
+* Analyze ATS readiness
+* Review skill and keyword coverage
 
 ### Improvement Suggestions
 
-Generate practical recommendations to improve resume strength and keyword coverage.
+* Generate actionable recommendations
+* Help strengthen resume content
+* Improve keyword relevance
 
 ### PDF Report Export
 
-Download a complete resume analysis report for future reference.
+* Download a complete resume analysis report
+* Save results for future reference
 
 ---
 
-## Tech Stack
-
-### Frontend
-
-* Streamlit
-
-### Backend
+## Built With
 
 * Python
-
-### Libraries
-
+* Streamlit
 * Pandas
 * NumPy
-* Scikit-learn
+* Scikit-Learn
 * ReportLab
-* PDF Processing Libraries
-* Python-dotenv
-
-### AI Integration
-
 * Google Gemini API (Optional)
-* Local NLP-based Analysis Engine
 
 ---
 
-## Project Structure
+## Project Screenshots
 
-```text
-AI-Resume-Analyzer/
+### Home Page
 
-├── app.py
-├── requirements.txt
-├── README.md
+![Home Page](images/Home%20Page.png)
 
-├── assets/
-│   └── style.css
+### Dashboard
 
-├── utils/
-│   ├── parser.py
-│   ├── scorer.py
-│   ├── recommendations.py
-│   ├── resume_summary.py
-│   ├── role_predictor.py
-│   ├── health_analyzer.py
-│   └── report_generator.py
-```
-
----
-
-## Installation
-
-Clone the repository:
-
-```bash
-git clone <repository-url>
-cd AI-Resume-Analyzer
-```
-
-Create a virtual environment:
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-```
-
-Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-Run the application:
-
-```bash
-streamlit run app.py
-```
-
----
-
-## Future Enhancements
-
-* Resume comparison across multiple versions
-* Advanced ATS scoring algorithms
-* Section-wise resume feedback
-* Interview preparation suggestions
-* Industry-specific resume recommendations
-* Resume benchmarking system
+![Dashboard](images/Full%20Page.png)
 
 ---
 
 ## What I Learned
 
-Through this project, I gained hands-on experience with:
+Some of the things I learned while building this project:
 
-* Python application development
-* Streamlit dashboard design
-* PDF text extraction
-* Natural Language Processing (NLP)
-* ATS-style resume analysis
-* API integration
-* UI/UX design principles
-* Application deployment and project structuring
+* Building interactive applications with Streamlit
+* Working with PDF parsing and text extraction
+* Implementing NLP-based keyword analysis
+* Understanding ATS scoring concepts
+* Generating downloadable PDF reports
+* Integrating external AI APIs
+* Structuring larger Python projects
+* Managing code with Git and GitHub
+* Deploying applications using Streamlit Cloud
+
+---
+
+## Future Improvements
+
+There are still several features I would like to add:
+
+* Resume section-by-section analysis
+* Industry-specific ATS scoring
+* Multiple resume comparison
+* Interview preparation recommendations
+* Resume benchmarking system
+* AI-powered resume optimization
+
+---
+
+## About
+
+This project is an important milestone in my journey of learning Python, Data Analytics, NLP, and AI-powered applications. It helped me understand how resume screening works while giving me hands-on experience building and deploying a complete end-to-end application.
 
 ---
 
