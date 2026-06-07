@@ -70,19 +70,15 @@ While building this project, I learned how to work with PDF processing, Natural 
 * ReportLab
 * Google Gemini API (Optional)
 
----
-
 ## Project Screenshots
 
 ### Home Page
 
-![Home Page](images/Home%20Page.png)
+![Home Page](images/home-page.png)
 
 ### Dashboard
 
-![Dashboard](images/Full%20Page.png)
-
----
+![Dashboard](images/dashboard.png)
 
 ## What I Learned
 
