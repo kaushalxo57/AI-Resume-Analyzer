@@ -1,6 +1,6 @@
-# 📄 AI Resume Analyzer
+# AI Resume Analyzer
 
-🔗 **Live Demo:** https://kaushal-ai-resume-analyzer.streamlit.app/
+**Live Demo:** https://kaushal-ai-resume-analyzer.streamlit.app/
 
 This is a resume analysis application that I built to improve my Python development skills and understand how Applicant Tracking Systems (ATS) evaluate resumes during the hiring process.
 
